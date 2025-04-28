@@ -1,18 +1,28 @@
-public class SinglyLinkedList {
+public class SinglyLinkedList<E extends Resep> {
     private Node head;
 
-    public SinglyLinkedList(){
-        this.head =null;
+    private class Node {
+        E data;
+        Node next;
+
+        public Node(E data) {
+            this.data = data;
+            this.next = null;
+        }
     }
 
-    public void addResepDiawal(Resep resep){
+    public SinglyLinkedList() {
+        this.head = null;
+    }
+
+    public void addResepDiawal(E resep) {
         Node newNode = new Node(resep);
         newNode.next = head;
         head = newNode;
     }
 
-    public void addResepDiakhir (Resep resep){
-        Node newNode = new Node (resep);
+    public void addResepDiakhir(E resep) {
+        Node newNode = new Node(resep);
         if (head == null) {
             head = newNode;
             return;
@@ -24,17 +34,16 @@ public class SinglyLinkedList {
         temp.next = newNode;
     }
 
-    public void cetakResep(){
+    public void cetakResep() {
         if (head == null) {
             System.out.println("Daftar resep kosong.");
             return;
         }
         Node temp = head;
-        while (temp!= null) {
+        while (temp != null) {
             System.out.println(temp.data);
             System.out.println("~~~~~~~~~~~");
             temp = temp.next;
-            
         }
     }
 
@@ -77,5 +86,4 @@ public class SinglyLinkedList {
         }
         System.out.println("Resep dengan nama \"" + nama + "\" tidak ditemukan.");
     }
-
 }
